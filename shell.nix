@@ -5,6 +5,26 @@ pkgs.mkShell {
         # nixpkgs-fmt
         gnumake
         cmake
+        doctest
+        boost
+        openblas
+        llvmPackages_21.openmp
+        graphviz
+        (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
+# select Python packages here
+            numpy
+            scipy
+            # pandas
+            # pyqt5
+            # pyqt6
+            matplotlib
+            # uncertainties
+            venvShellHook
+            pybind11
+            pygraphviz
+            beartype
+        ]))
+        mkl
    ];
 
     shellHook = ''
