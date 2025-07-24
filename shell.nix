@@ -8,7 +8,7 @@ pkgs.mkShell {
         doctest
         boost
         openblas
-        llvmPackages_21.openmp
+        llvmPackages_18.openmp
         graphviz
         (pkgs.python3.withPackages (python-pkgs: with python-pkgs; [
 # select Python packages here
