@@ -9,7 +9,7 @@ pkgs.stdenv.mkDerivation rec {
     #     pkgs.cmake
     #     pkgs.ninja
     # ];
-    #
+    
     buildInputs = with pkgs; [
         # nixpkgs-fmt
         gnumake
@@ -38,7 +38,6 @@ pkgs.stdenv.mkDerivation rec {
 
     cmakeFlags = [
         "-DPYTHON_EXECUTABLE=${pkgs.python3}/bin/python"
-        "-DCMAKE_INSTALL_PREFIX=$out/bin"
     ];
 
     shellHook = ''
