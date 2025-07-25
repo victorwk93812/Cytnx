@@ -1,7 +1,16 @@
-{pkgs ? import <nixpkgs> {}, Cytnx }: 
-pkgs.mkShell {
-    # Using packages instead of buildInputs is also fine
-    buildInputs = with pkgs; [ 
+{pkgs ? import <nixpkgs> {} }: 
+pkgs.stdenv.mkDerivation rec {
+    pname = "Cytnx";
+    version = "1.0.0";
+
+    src = ./.; 
+
+    # nativeBuildInputs = [
+    #     pkgs.cmake
+    #     pkgs.ninja
+    # ];
+    #
+    buildInputs = with pkgs; [
         # nixpkgs-fmt
         gnumake
         cmake
@@ -25,10 +34,14 @@ pkgs.mkShell {
             beartype
         ]))
         mkl
-        Cytnx.packages.default
-   ];
+    ];
+
+    cmakeFlags = [
+        "-DPYTHON_EXECUTABLE=${pkgs.python3}/bin/python"
+        "-DCMAKE_INSTALL_PREFIX=$out/bin"
+    ];
 
     shellHook = ''
-        cmake --version
+        echo "Cytnx flake successfully built"
     ''; 
 }
