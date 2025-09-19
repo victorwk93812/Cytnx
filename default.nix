@@ -38,6 +38,7 @@ pkgs.stdenv.mkDerivation rec {
 
     cmakeFlags = [
         "-DPYTHON_EXECUTABLE=${pkgs.python3}/bin/python"
+        "-DCMAKE_VERBOSE_MAKEFILE=ON"
     ];
 
     shellHook = ''
